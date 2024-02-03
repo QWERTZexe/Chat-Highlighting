@@ -1,22 +1,27 @@
-# AutoGG Reimagined
+# Chat Highlighting
 
 ![Powered by OneConfig](https://raw.githubusercontent.com/Polyfrost/Nexus/main/apps/website/public/media/branding/badges/badge_1.png)
 
-<a href="https://www.freepik.com/icon/gg_4292773#fromView=resource_detail&position=23">Icon by Freepik</a>
+<a href="https://www.freepik.com/icon/pin_5043900">Icon by HJ Studio</a>
 
-AutoGG Reimagined allows you to customize GG messages which are automatically sent after a game on Hypixel!
+Highlight keywords in the Minecraft chat!
 ## Installing
-- Get the most recent [RELEASE](https://github.com/QWERTZexe/AutoGG-Reimagined/releases)
+- Get the most recent [RELEASE](https://github.com/QWERTZexe/Chat-Highlighting/releases)
 - Launch forge 1.8.9 with the mod
-- Set the trigger in the config to the word which means "WINNER" in your set Hypixel language
-
-![WINNER](https://github.com/QWERTZexe/AutoGG-Reimagined/blob/main/images/assets/WINNER.png?raw=true)
+- Run /highlighting to configure
 
 ## How to use
-/gg to open the config
+- Enable / Disable the config to reset / highlight EVERY previous message!
+- In the word field, use this syntax: ``("word_to_be_highlighted";colorcode;optionalformatting)``
+- Seperate multiple with ; example: ``("word";6);("notword";1;l)``
 ## Features
 - Constant updates
-- Works for every game on Hypixel
-- Saves your time by automatically sending your own GG message into the chat
+- Saves your time by automatically highlighting your own keywords into the chat
+- Rehighlight / Unhighlight previous messages
+- Hide your name (useful when streaming): just do ``("IGN";k)``
 ## Screenshots
-![Config](https://github.com/QWERTZexe/AutoGG-Reimagined/blob/main/images/Config.png?raw=true)
+![Config](https://github.com/QWERTZexe/Chat-Highlighting/blob/main/images/Config.png?raw=true)
+
+![HypixelExample](https://github.com/QWERTZexe/Chat-Highlighting/blob/main/images/LobbyJoin.png?raw=true)
+
+![HideYourName](https://github.com/QWERTZexe/Chat-Highlighting/blob/main/images/Streamhide.png?raw=true)

@@ -1,36 +1,36 @@
-package com.qwertz.autogg_reimagined.command
+package com.qwertz.chat_highlighting.command
 
 import cc.polyfrost.oneconfig.utils.commands.annotations.Command
-import com.qwertz.autogg_reimagined.AutoGG
+import com.qwertz.chat_highlighting.ChatHighlighting
 import net.minecraft.command.CommandBase
 import net.minecraft.command.ICommandSender
-import com.qwertz.autogg_reimagined.AutoGG.Companion.config
+import com.qwertz.chat_highlighting.ChatHighlighting.Companion.config
 import net.minecraft.client.Minecraft
 import net.minecraft.util.ChatComponentText
-val AGConfig = config
+val CHConfig = config
 
 // Check the value of the enable/disable option for the current mod
 class IsEnabled {
     fun EnabledCheck(): Boolean {
-        if (AGConfig.enabled) {
+        if (CHConfig.enabled) {
             return true
         } else {
             return false
         }
     }
 }
-@Command(value = AutoGG.MODID, description = "Access the " + AutoGG.NAME + " Config")
-class AutoGGCommand : CommandBase() {
-    override fun getCommandName() = "gg"
+@Command(value = ChatHighlighting.MODID, description = "Access the " + ChatHighlighting.NAME + " Config")
+class ChatHighlightingCommand : CommandBase() {
+    override fun getCommandName() = "highlighting"
 
-    override fun getCommandUsage(sender: ICommandSender) = "/gg"
+    override fun getCommandUsage(sender: ICommandSender) = "/highlighting"
 
     override fun processCommand(sender: ICommandSender, args: Array<String>) {
         // Ensure that this command is only executed on the client side
         if (IsEnabled().EnabledCheck()) {
-            AGConfig.openGui()
+            CHConfig.openGui()
         } else {
-            Minecraft.getMinecraft().thePlayer.addChatMessage(ChatComponentText("§4[§6§lAUTOGG REIMAGINED§4]§a: The mod is disabled in OneConfig. Please enable it."))
+            Minecraft.getMinecraft().thePlayer.addChatMessage(ChatComponentText("§4[§6§lCHAT HIGHLIGHTING§4]§a: The mod is disabled in OneConfig. Please enable it."))
     }}
 
     // Make sure the command can be used by any player

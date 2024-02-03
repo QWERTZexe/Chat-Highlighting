@@ -1,13 +1,13 @@
 {
   "compatibilityLevel": "JAVA_8",
   "minVersion": "0.7",
-  "package": "com.qwertz.autogg_reimagined.mixin",
-  "refmap": "mixins.autogg_reimagined.refmap.json",
+  "package": "com.qwertz.chat_highlighting.mixin",
+  "refmap": "mixins.chat_highlighting.refmap.json",
   "injectors": {
     "maxShiftBy": 5
   },
   "client": [
-    "AutoGGMixin"
+    "ChatHighlightingMixin"
   ],
   "verbose": true
 }
