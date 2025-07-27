@@ -98,63 +98,41 @@ class TickEventHandler {
             }
         }
 
-
 class ChatEventHandler {
     @SubscribeEvent
     fun onChatReceived(event: ClientChatReceivedEvent) {
         if (event.type.toString() != "2") {
             // Add the received message to the list
+            System.out.println(event.message.formattedText)
             GlobalData.chatMessages.add(event.message.formattedText)
             if (config.enabled) {
                 val regex = Regex("\\(\"([^\"]+)\";(\\(?[0-9a-f]+[^)]*\\)?)\\)")
                 val result =
                     regex.findAll(config.Wordstring).map { it.groupValues[1] to it.groupValues[2].split(";") }.toMap()
-                event.setCanceled(true)
-                var modifiedMessage: IChatComponent?
-                if(event.message.siblings.toString() == "[]") {
-                    modifiedMessage = ChatComponentText(modifyText(event.message.formattedText))
-                }
-                else {
-                    modifiedMessage = modifyChatComponent(event.message)
+
+                var message2 = event.message.formattedText
+                var matched = false // Track if any match is found
+
+                result.keys.forEach { key ->
+                    if (key in message2) {
+                        matched = true
+                        val preformatting = result[key]?.joinToString(separator = "§", prefix = "§")
+                        val regexbeforekeyword = Regex(".*(?=$key)")
+                        val b = regexbeforekeyword.find(message2)
+                        val regexcolorcodes = Regex("§[0-9A-FK-OR]")
+                        val colorcodes = regexcolorcodes.findAll(b.toString()).map { it.value }.joinToString("")
+                        message2 = message2.replace(key, "$preformatting$key§f$colorcodes")
                     }
-                Minecraft.getMinecraft().thePlayer.addChatMessage(modifiedMessage)
+                }
+                System.out.println(event.message.formattedText)
+
+                if (matched) {
+                    event.setCanceled(true)
+                    System.out.println(event.message.formattedText)
+
+                    Minecraft.getMinecraft().thePlayer.addChatMessage(ChatComponentText(message2))
+                }
             }
         }
-    }
-
-    fun modifyChatComponent(component: IChatComponent): IChatComponent {
-        // Base case: If the component is a simple text component, modify its text
-        if (component is ChatComponentText) {
-            val modifiedText = modifyText(component.chatComponentText_TextValue)
-            val newComponent = ChatComponentText(modifiedText)
-            newComponent.chatStyle = component.chatStyle
-            return newComponent
-        }
-
-        // Recursive case: If the component has siblings, modify them recursively
-        val modifiedSiblings = component.siblings.map { modifyChatComponent(it) }
-        val newComponent = component.createCopy()
-        newComponent.siblings.clear()
-        newComponent.siblings.addAll(modifiedSiblings)
-        return newComponent
-    }
-
-    fun modifyText(text: String): String {
-        val regex = Regex("\\(\"([^\"]+)\";(\\(?[0-9a-f]+[^)]*\\)?)\\)")
-        val result =
-            regex.findAll(config.Wordstring).map { it.groupValues[1] to it.groupValues[2].split(";") }.toMap()
-        var message2 = text
-        result.keys.forEach { key ->
-            if (key in message2) {
-                val preformatting = result[key]?.joinToString(separator = "§", prefix = "§")
-                val regexbeforekeyword = Regex(".*(?=$key)")
-                val b = regexbeforekeyword.find(message2)
-                val regexcolorcodes = Regex("§[0-9A-FK-OR]")
-                val colorcodes = regexcolorcodes.findAll(b.toString()).map { it.value }.joinToString("")
-                message2 = message2.replace(key, "$preformatting$key§f$colorcodes")
-            }
-        }
-        val modifiedText = message2
-        return modifiedText
     }
 }
