@@ -1,4 +1,4 @@
-package com.qwertz.chat_highlighting.mixin;
+package app.qwertz.chat_highlighting.mixin;
 
 import net.minecraft.client.Minecraft;
 import org.spongepowered.asm.mixin.Mixin;

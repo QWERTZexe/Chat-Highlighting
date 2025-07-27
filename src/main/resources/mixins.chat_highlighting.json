@@ -1,7 +1,7 @@
 {
   "compatibilityLevel": "JAVA_8",
   "minVersion": "0.7",
-  "package": "com.qwertz.chat_highlighting.mixin",
+  "package": "app.qwertz.chat_highlighting.mixin",
   "refmap": "mixins.chat_highlighting.refmap.json",
   "injectors": {
     "maxShiftBy": 5

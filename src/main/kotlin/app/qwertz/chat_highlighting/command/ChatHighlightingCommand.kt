@@ -1,10 +1,10 @@
-package com.qwertz.chat_highlighting.command
+package app.qwertz.chat_highlighting.command
 
 import cc.polyfrost.oneconfig.utils.commands.annotations.Command
-import com.qwertz.chat_highlighting.ChatHighlighting
+import app.qwertz.chat_highlighting.ChatHighlighting
 import net.minecraft.command.CommandBase
 import net.minecraft.command.ICommandSender
-import com.qwertz.chat_highlighting.ChatHighlighting.Companion.config
+import app.qwertz.chat_highlighting.ChatHighlighting.Companion.config
 import net.minecraft.client.Minecraft
 import net.minecraft.util.ChatComponentText
 val CHConfig = config

@@ -1,6 +1,6 @@
-package com.qwertz.chat_highlighting.config
+package app.qwertz.chat_highlighting.config
 
-import com.qwertz.chat_highlighting.ChatHighlighting
+import app.qwertz.chat_highlighting.ChatHighlighting
 import cc.polyfrost.oneconfig.config.Config
 import cc.polyfrost.oneconfig.config.annotations.Header
 import cc.polyfrost.oneconfig.config.annotations.Switch
