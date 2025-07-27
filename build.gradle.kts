@@ -18,12 +18,11 @@ tasks.withType<Jar> {
 plugins {
     kotlin("jvm")
     id("org.polyfrost.multi-version")
-    val egtVersion = "0.3.0" // should be whatever is displayed in above badge
     id("org.polyfrost.defaults.repo")
     id("org.polyfrost.defaults.java")
     id("org.polyfrost.defaults.loom")
     id("com.github.johnrengelman.shadow")
-    id("net.kyori.blossom") version "1.3.1"
+    id("net.kyori.blossom") version "1.3.2"
     id("signing")
     java
 }
@@ -207,21 +206,21 @@ tasks {
     }
 }
 
-        tasks {
-            val processResources by getting(ProcessResources::class) {
-                // this will ensure that this task is redone when the versions change.
-                inputs.property("version", project.version)
-                inputs.property("mcversion", "1.8.9")
+tasks {
+    val processResources by getting(ProcessResources::class) {
+        // this will ensure that this task is redone when the versions change.
+        inputs.property("version", project.version)
+        inputs.property("mcversion", "1.8.9")
 
-                // replace stuff in mcmod.info, nothing else
-                from(sourceSets["main"].resources.srcDirs) {
-                    include("mcmod.info")
-                    // replace version and mcversion
-                }
-
-                // copy everything else, excluding mcmod.info
-                from(sourceSets["main"].resources.srcDirs) {
-                    exclude("mcmod.info")
-                }
-            }
+        // replace stuff in mcmod.info, nothing else
+        from(sourceSets["main"].resources.srcDirs) {
+            include("mcmod.info")
+            // replace version and mcversion
         }
+
+        // copy everything else, excluding mcmod.info
+        from(sourceSets["main"].resources.srcDirs) {
+            exclude("mcmod.info")
+        }
+    }
+}
